@@ -10,6 +10,14 @@ namespace MLEUE1
     {
         static void Main(string[] args)
         {
+            List<Data> test = new List<Data>();
+            List<Data> train = new List<Data>();
+            DataGuesser guesser = new DataGuesser(3);
+            for (int i = 0; i < test.Count; i++)
+            {
+                int quality = guesser.GuessQuality(test[i], train);
+
+            }
         }
     }
 }
