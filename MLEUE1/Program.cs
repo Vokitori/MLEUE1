@@ -10,6 +10,10 @@ namespace MLEUE1
     {
         static void Main(string[] args)
         {
+            DataManager manager = new DataManager(10);
+            manager.Load(@".\winequality-white.csv");
+            manager.setTestData();
+            Console.ReadKey();
         }
     }
 }
