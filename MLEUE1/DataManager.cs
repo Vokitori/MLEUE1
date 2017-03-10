@@ -9,14 +9,16 @@ namespace MLEUE1
 {
     class DataManager
     {
-        public List<List<Wine>> QualityList = new List<List<Wine>>();
-        public List<Wine> train = new List<Wine>();
-        public List<Wine> test = new List<Wine>();
+        public List<List<Data>> QualityList = new List<List<Data>>();
+        public List<Data> train = new List<Data>();
+        public List<Data> test = new List<Data>();
 
-        public DataManager() {
+        public DataManager()
+        {
         }
 
-        public void Load(string path) {
+        public void Load(string path)
+        {
             try
             {
                 string line;
@@ -58,14 +60,14 @@ namespace MLEUE1
         {
             Random r = new Random();
             int random;
-                train = new List<Wine>();
-                test = new List<Wine>();
-            
+            train = new List<Data>();
+            test = new List<Data>();
+
             for (int outerCount = 0; outerCount < QualityList.Count; outerCount++)
             {
                 for (int innerCount = 0; innerCount < QualityList[outerCount].Count; innerCount++)
                 {
-                    random = (int)(r.NextDouble() * (QualityList[outerCount].Count*0.10 - innerCount));
+                    random = (int)(r.NextDouble() * (QualityList[outerCount].Count * 0.10 - innerCount));
                     test.Add(QualityList[outerCount][random]);
                     QualityList[outerCount].RemoveAt(random);
                 }
