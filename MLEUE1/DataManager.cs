@@ -9,18 +9,27 @@ namespace MLEUE1
 {
     class DataManager
     {
-        public List<List<Data>> QualityList = new List<List<Data>>();
+        private List<List<Data>> QualityList = new List<List<Data>>();
         public List<Data> train = new List<Data>();
         public List<Data> test = new List<Data>();
+        public List<Data> testCompaire = new List<Data>();
 
-        public DataManager()
+        private int _categoryNumber { get; set; }
+
+        public DataManager(int categoryNumber)
         {
+            _categoryNumber = categoryNumber;
         }
 
         public void Load(string path)
         {
             try
             {
+                QualityList = new List<List<Data>>();
+                for (int i = 0; i < _categoryNumber; i++)
+                {
+                    QualityList.Add(new List<Data>());
+                }
                 string line;
                 StreamReader file =
                    new StreamReader(path);
@@ -41,7 +50,7 @@ namespace MLEUE1
                     tempWine.Sulphates = Double.Parse(parts[9]);
                     tempWine.Alcohol = Double.Parse(parts[10]);
                     tempWine.Quality = Int32.Parse(parts[11]);
-
+                    
                     QualityList[tempWine.Quality].Add(tempWine);
 
                 }
@@ -50,9 +59,10 @@ namespace MLEUE1
             {
                 Console.WriteLine("File not found.");
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Some Error");
+
+                Console.WriteLine(e);
             }
         }
 
@@ -62,12 +72,14 @@ namespace MLEUE1
             int random;
             train = new List<Data>();
             test = new List<Data>();
+            testCompaire = new List<Data>();
 
             for (int outerCount = 0; outerCount < QualityList.Count; outerCount++)
             {
-                for (int innerCount = 0; innerCount < QualityList[outerCount].Count; innerCount++)
+                int tenPercent =(int)(QualityList[outerCount].Count * 0.10);
+                for (int innerCount = 0; innerCount < tenPercent; innerCount++)
                 {
-                    random = (int)(r.NextDouble() * (QualityList[outerCount].Count * 0.10 - innerCount));
+                    random = (int)(r.NextDouble() * (QualityList[outerCount].Count));
                     test.Add(QualityList[outerCount][random]);
                     QualityList[outerCount].RemoveAt(random);
                 }
@@ -75,6 +87,13 @@ namespace MLEUE1
             for (int i = 0; i < QualityList.Count; i++)
             {
                 train.AddRange(QualityList[i]);
+            }
+
+            testCompaire.AddRange(test);
+
+            for (int i = 0; i < test.Count; i++)
+            {
+                test[i].Quality = -1;
             }
         }
 

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Data.cs" />
     <Compile Include="DataGuesser.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="DataSimilarityComparator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
