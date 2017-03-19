@@ -14,11 +14,11 @@ namespace MLEUE1
             manager.Load(@".\winequality-white.csv");
             manager.setTestData();
             DataGuesser guesser = new DataGuesser(3);
-            for (int i = 0; i < manager.test.Count(); i++)
+          /*  for (int i = 0; i < manager.test.Count(); i++)
             {
                 int quality = guesser.GuessQuality(manager.test[i], manager.train);
                 manager.test[i].Quality = quality;
-            }
+            }*/
             Console.ReadKey();
         }
     }

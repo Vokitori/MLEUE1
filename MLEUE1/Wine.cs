@@ -8,6 +8,12 @@ namespace MLEUE1
 {
     class Wine : Data
     {
+        public Wine() {
+            Attributes = new List<double>(11);
+            for(int i = 0; i < Attributes.Count; i++) {
+                Attributes.Add(0);
+            }
+        }
         public double FixedAcidity { get { return Attributes[0]; } set { Attributes[0] = value; } }
         public double VolatileAcidity { get { return Attributes[1]; } set { Attributes[1] = value; } }
         public double CitricAcid { get { return Attributes[2]; } set { Attributes[2] = value; } }

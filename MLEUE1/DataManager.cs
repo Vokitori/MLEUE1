@@ -31,32 +31,21 @@ namespace MLEUE1 {
                 while ((line = file.ReadLine()) != null) {
                     if (line.Trim().Length < 1)
                         continue;
-                    string[] parts = line.Split(new char[] { ';' });
-                    if (parts.Length > 11)
+                    string[] parts = line.Split(new char[] { ';' }, 12);
+                    Console.Write(parts.Length);
+                    if (parts.Length < 12)
                         continue;
-                    Console.WriteLine(line);
                     Wine tempWine = new Wine();
-                    System.Globalization.CultureInfo ci = System.Globalization.CultureInfo.InvariantCulture;
-                    tempWine.FixedAcidity = Double.Parse(parts[0].Trim(), ci);
-                    tempWine.VolatileAcidity = Double.Parse(parts[1].Trim(), ci);
-                    tempWine.CitricAcid = Double.Parse(parts[2].Trim(), ci);
-                    tempWine.ResidualSugar = Double.Parse(parts[3].Trim(), ci);
-                    tempWine.Chlorides = Double.Parse(parts[4].Trim(), ci);
-                    tempWine.FreeSulfurDioxide = Double.Parse(parts[5].Trim(), ci);
-                    tempWine.TotalSulfurDioxide = Double.Parse(parts[6].Trim(), ci);
-                    tempWine.Density = Double.Parse(parts[7].Trim(), ci);
-                    tempWine.PH = Double.Parse(parts[8].Trim(), ci);
-                    tempWine.Sulphates = Double.Parse(parts[9].Trim(), ci);
-                    tempWine.Alcohol = Double.Parse(parts[10].Trim(), ci);
-                    tempWine.Quality = Int32.Parse(parts[11].Trim(), ci);
-
+                    for (int i = 0; i < 11; i++) {
+                        tempWine.Attributes.Add(Double.Parse(parts[i].Trim(), System.Globalization.CultureInfo.InvariantCulture));
+                    }
+                    tempWine.Quality = Int32.Parse(parts[11].Trim(), System.Globalization.CultureInfo.InvariantCulture);
                     QualityList[tempWine.Quality].Add(tempWine);
 
                 }
             } catch (FileNotFoundException) {
                 Console.WriteLine("File not found.");
             } catch (Exception e) {
-
                 Console.WriteLine(e);
             }
         }
