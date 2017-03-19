@@ -32,7 +32,6 @@ namespace MLEUE1 {
                     if (line.Trim().Length < 1)
                         continue;
                     string[] parts = line.Split(new char[] { ';' }, 12);
-                    Console.Write(parts.Length);
                     if (parts.Length < 12)
                         continue;
                     Wine tempWine = new Wine();
