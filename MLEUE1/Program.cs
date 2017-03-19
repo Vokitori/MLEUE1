@@ -25,7 +25,8 @@ namespace MLEUE1
             for (int i = 0; i < manager.test.Count(); i++)
             {
                 int quality = guesser.GuessQuality(manager.test[i], manager.train);
-                Console.WriteLine(i + ": " + quality + " Realquality: "+ manager.testCompaire[i].Quality);
+                Console.WriteLine(i + ": " + quality + " Realquality: "+ 
+                    manager.testCompaire[i].Quality+" Distance: "+ (quality-manager.testCompaire[i].Quality));
                 manager.test[i].Quality = quality;
             }
             Console.ReadKey();
