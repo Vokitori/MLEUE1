@@ -68,7 +68,10 @@ namespace MLEUE1 {
                 train.AddRange(QualityList[i]);
             }
 
-            testCompaire.AddRange(test);
+            for (int i = 0; i < test.Count; i++)
+            {
+                testCompaire.Add((Data)test[i].Clone());
+            }
 
             for (int i = 0; i < test.Count; i++) {
                 test[i].Quality = -1;

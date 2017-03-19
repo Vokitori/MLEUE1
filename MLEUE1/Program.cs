@@ -13,11 +13,19 @@ namespace MLEUE1
             DataManager manager = new DataManager(10);
             manager.Load(@".\winequality-white.csv");
             manager.setTestData();
+            for (int i = 0; i < manager.test.Count; i++)
+            {
+               Console.WriteLine( manager.test[i].ToString());
+            }
+            for (int i = 0; i < manager.testCompaire.Count; i++)
+            {
+                Console.WriteLine(manager.testCompaire[i].ToString());
+            }
             DataGuesser guesser = new DataGuesser(3);
             for (int i = 0; i < manager.test.Count(); i++)
             {
                 int quality = guesser.GuessQuality(manager.test[i], manager.train);
-                Console.WriteLine(i + ": " + quality);
+                Console.WriteLine(i + ": " + quality + " Realquality: "+ manager.testCompaire[i].Quality);
                 manager.test[i].Quality = quality;
             }
             Console.ReadKey();
