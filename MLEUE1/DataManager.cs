@@ -36,7 +36,7 @@ namespace MLEUE1
                 file.ReadLine();
                 while ((line = file.ReadLine()) != null)
                 {
-                    string[] parts = file.ReadLine().Split(new char[] { ';' }, 12);
+                    string[] parts = line.Split(new char[] { ';' }, 12);
                     Wine tempWine = new Wine();
                     tempWine.FixedAcidity = Double.Parse(parts[0]);
                     tempWine.VolatileAcidity = Double.Parse(parts[1]);
